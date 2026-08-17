@@ -1,5 +1,5 @@
 """
-full_scan.py — Runs every available check against a target in one go.
+full_scan.py > Runs every available check against a target in one go.
 
 This is an example/utility script that chains all recon modules together
 for a full investigation instead of calling the CLI multiple times by hand.
@@ -112,7 +112,7 @@ def main() -> int:
         for ip in sorted(all_ips):
             scan_ip(ip)
     else:
-        print("\n[!] No IPs were resolved for any target — skipping IP-based checks.")
+        print("\n[!] No IPs were resolved for any target, skipping IP-based checks.")
 
     print(f"\n{'#' * 70}\n#  SCAN COMPLETE\n{'#' * 70}")
     return 0

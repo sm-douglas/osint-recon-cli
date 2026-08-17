@@ -7,7 +7,7 @@ without exposing the maintainer or any user to unnecessary risk:
 
 - **No hardcoded credentials.** Every API key is read exclusively from
   environment variables (optionally via a local `.env` file). Search the
-  codebase — there is no key, token, or secret embedded anywhere.
+  codebase, there is no key, token, or secret embedded anywhere.
 - **`.env` is git-ignored.** Only `.env.example` (with empty placeholder
   values) is tracked in version control.
 - **Input validation on every network call.** Domains and IPs are validated
@@ -26,7 +26,7 @@ without exposing the maintainer or any user to unnecessary risk:
   can never hang indefinitely or be used to build a denial-of-service
   vector against itself or a target.
 - **Graceful degradation.** Missing API keys produce a clear warning and
-  skip that check — the tool never crashes or silently fails.
+  skip that check, the tool never crashes or silently fails.
 
 ## Reporting a vulnerability
 

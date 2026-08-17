@@ -257,6 +257,6 @@ with tab_full:
                         render_output("AbuseIPDB", run_captured(abuseipdb.run, ip))
                         render_output("Shodan", run_captured(shodan_lookup.run, ip))
             else:
-                st.info("No IPs were resolved — skipping IP-based checks.")
+                st.info("No IPs were resolved, skipping IP-based checks.")
 
             st.success("Full scan complete.")

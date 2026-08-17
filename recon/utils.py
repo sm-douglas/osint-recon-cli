@@ -2,7 +2,7 @@
 utils.py > Shared helpers: input validation, safe HTTP requests, and output formatting.
 
 Input validation exists so the tool only ever queries third-party APIs with
-well-formed domains/IPs so this avoids malformed requests, accidental
+well-formed domains/IPs, this avoids malformed requests, accidental
 querying of internal/private addresses, and keeps the tool's behavior
 predictable and auditable.
 """

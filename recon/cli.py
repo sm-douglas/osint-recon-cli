@@ -1,5 +1,5 @@
 """
-cli.py — Command-line entry point for OSINT Recon CLI.
+cli.py > Command-line entry point for OSINT Recon CLI.
 
 Usage examples:
     python -m recon domain example.com

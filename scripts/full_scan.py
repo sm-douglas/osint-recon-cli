@@ -8,8 +8,8 @@ Shodan, geolocation) run against the correct address without you having to
 look it up separately.
 
 Usage:
-    python scripts/full_scan.py santgreen.com
-    python scripts/full_scan.py santgreen.com --subdomains app,play
+    python scripts/full_scan.py example.com
+    python scripts/full_scan.py example.com --subdomains app,play
 
 This will run, for the base domain and each subdomain given:
     - WHOIS/RDAP
@@ -112,7 +112,7 @@ def main() -> int:
         for ip in sorted(all_ips):
             scan_ip(ip)
     else:
-        print("\n[!] No IPs were resolved for any target — skipping IP-based checks.")
+        print("\n[!] No IPs were resolved for any target, skipping IP-based checks.")
 
     print(f"\n{'#' * 70}\n#  SCAN COMPLETE\n{'#' * 70}")
     return 0

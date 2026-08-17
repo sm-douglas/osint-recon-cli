@@ -1,5 +1,5 @@
 """
-dns_lookup.py — A/AAAA/MX/NS/TXT/CNAME/SOA resolution via dnspython, with a
+dns_lookup.py > A/AAAA/MX/NS/TXT/CNAME/SOA resolution via dnspython, with a
 DNS-over-HTTPS (DoH) fallback for networks that block traditional DNS.
 
 No third-party API or key required.
@@ -138,7 +138,7 @@ def run(domain: str) -> None:
     if classic_blocked_count >= len(RECORD_TYPES) - 1:
         warn(
             "Classic DNS (port 53) appears to be blocked on this network "
-            "(firewall/VPN/antivirus) — results above were retrieved via "
+            "(firewall/VPN/antivirus), results above were retrieved via "
             "DNS-over-HTTPS (port 443) instead."
         )
 

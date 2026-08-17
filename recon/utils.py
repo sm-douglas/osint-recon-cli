@@ -1,8 +1,8 @@
 """
-utils.py — Shared helpers: input validation, safe HTTP requests, and output formatting.
+utils.py > Shared helpers: input validation, safe HTTP requests, and output formatting.
 
 Input validation exists so the tool only ever queries third-party APIs with
-well-formed domains/IPs — this avoids malformed requests, accidental
+well-formed domains/IPs so this avoids malformed requests, accidental
 querying of internal/private addresses, and keeps the tool's behavior
 predictable and auditable.
 """
@@ -25,6 +25,37 @@ def is_valid_domain(value: str) -> bool:
     if not value or len(value) > 253:
         return False
     return bool(DOMAIN_RE.match(value.strip().lower()))
+
+def clean_domain_input(value: str) -> str:
+    """
+    Normalize user input into a bare domain: strips scheme (http/https),
+    any path/query/fragment, a trailing dot, and surrounding whitespace.
+    Accepts both "example.com" and "https://example.com/some/path?x=1"
+    and returns "example.com" in either case.
+    """
+    cleaned = value.strip().lower()
+    cleaned = re.sub(r"^https?://", "", cleaned)
+    cleaned = cleaned.split("/")[0]
+    cleaned = cleaned.split("?")[0]
+    cleaned = cleaned.split("#")[0]
+    cleaned = cleaned.rstrip(".")
+    return cleaned
+
+
+def clean_domain_input(value: str) -> str:
+    """
+    Normalize user input into a bare domain: strips scheme (http/https),
+    any path/query/fragment, a trailing dot, and surrounding whitespace.
+    Accepts both "example.com" and "https://example.com/some/path?x=1"
+    and returns "example.com" in either case.
+    """
+    cleaned = value.strip().lower()
+    cleaned = re.sub(r"^https?://", "", cleaned)
+    cleaned = cleaned.split("/")[0]
+    cleaned = cleaned.split("?")[0]
+    cleaned = cleaned.split("#")[0]
+    cleaned = cleaned.rstrip(".")
+    return cleaned
 
 
 def is_valid_ip(value: str) -> Optional[str]:

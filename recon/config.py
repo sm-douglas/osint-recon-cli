@@ -1,5 +1,5 @@
 """
-config.py — Centralized configuration and secrets loading.
+config.py > Centralized configuration and secrets loading.
 
 SECURITY NOTE:
 No API key, token, or credential is ever hardcoded in this project.
@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 # Optional .env support. If python-dotenv isn't installed, the tool still
-# works using real environment variables — this dependency is not required.
+# works using real environment variables (this dependency is not required).
 try:
     from dotenv import load_dotenv
 

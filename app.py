@@ -1,9 +1,9 @@
 """
-app.py — A simple browser-based interface for OSINT Recon CLI.
+app.py > A simple browser-based interface for OSINT Recon CLI.
 
 Runs entirely on your own machine (no data leaves your computer except the
 requests each module already makes to its respective public API). Built for
-people who prefer clicking buttons over typing terminal commands — it wraps
+people who prefer clicking buttons over typing terminal commands, it wraps
 the exact same modules used by the command-line tool, so results are
 identical either way.
 
@@ -30,7 +30,7 @@ from recon.modules import (
     abuseipdb,
     shodan_lookup,
 )
-from recon.utils import is_valid_domain, is_valid_ip
+from recon.utils import is_valid_domain, is_valid_ip, clean_domain_input
 
 try:
     import dns.resolver
@@ -75,7 +75,7 @@ def render_output(title: str, text: str) -> None:
 
 def key_badge(label: str, has_key: bool) -> str:
     icon = "🟢" if has_key else "⚪"
-    status = "configured" if has_key else "not set — check will be skipped"
+    status = "configured" if has_key else "not set, check will be skipped"
     return f"{icon} **{label}** — {status}"
 
 
@@ -88,7 +88,7 @@ st.set_page_config(page_title="OSINT Recon", page_icon="🔍", layout="wide")
 st.title("🔍 OSINT Recon")
 st.caption(
     "A friendly interface for the OSINT Recon CLI. Runs locally on your "
-    "machine — nothing is sent anywhere except the requests each check "
+    "machine, nothing is sent anywhere except the requests each check "
     "already makes to its own public API."
 )
 
@@ -130,7 +130,7 @@ with tab_domain:
         chk_vt = st.checkbox("VirusTotal", value=True, key="d_vt")
 
     if st.button("Run checks", type="primary", key="run_domain"):
-        clean_domain = domain_input.strip().lower()
+        clean_domain = clean_domain_input(domain_input)
         if not is_valid_domain(clean_domain):
             st.error(f"'{domain_input}' does not look like a valid domain.")
         else:
@@ -204,7 +204,7 @@ with tab_url:
 # --------------------------------------------------------------------------
 
 with tab_full:
-    st.subheader("Full scan — domain, subdomains, and every resolved IP")
+    st.subheader("Full scan: domain, subdomains, and every resolved IP")
     st.caption(
         "Runs every domain-level check on the base domain and any subdomains "
         "you list, then automatically resolves and scans every IP found."
@@ -219,7 +219,7 @@ with tab_full:
     )
 
     if st.button("Run full scan", type="primary", key="run_full"):
-        base = full_domain.strip().lower()
+        base = clean_domain_input(full_domain)
         if not is_valid_domain(base):
             st.error(f"'{full_domain}' does not look like a valid domain.")
         else:

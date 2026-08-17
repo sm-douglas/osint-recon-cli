@@ -1,5 +1,5 @@
 """
-full_scan.py — Runs every available check against a target in one go.
+full_scan.py > Runs every available check against a target in one go.
 
 This is an example/utility script that chains all recon modules together
 for a full investigation instead of calling the CLI multiple times by hand.
@@ -35,7 +35,7 @@ from recon.modules import (
     abuseipdb,
     shodan_lookup,
 )
-from recon.utils import is_valid_domain, error
+from recon.utils import is_valid_domain, clean_domain_input, error
 
 try:
     import dns.resolver
@@ -88,7 +88,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    base_domain = args.domain.strip().lower()
+    base_domain = clean_domain_input(args.domain)
     if not is_valid_domain(base_domain):
         error(f"'{base_domain}' is not a valid domain.")
         return 1

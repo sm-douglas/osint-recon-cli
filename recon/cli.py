@@ -22,7 +22,7 @@ from .modules import (
     shodan_lookup,
     ssl_check,
 )
-from .utils import is_valid_domain, is_valid_ip, error
+from .utils import is_valid_domain, is_valid_ip, clean_domain_input, error
 
 BANNER = r"""
   ___  ____ ___ _   _ _____   ____                         ____ _     ___
@@ -88,7 +88,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def run_domain(args: argparse.Namespace) -> int:
-    domain = args.target.strip().lower().removeprefix("http://").removeprefix("https://").split("/")[0]
+    domain = clean_domain_input(args.target)
     if not is_valid_domain(domain):
         error(f"'{args.target}' does not look like a valid domain name.")
         return 1

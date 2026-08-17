@@ -3,7 +3,7 @@ app.py — A simple browser-based interface for OSINT Recon CLI.
 
 Runs entirely on your own machine (no data leaves your computer except the
 requests each module already makes to its respective public API). Built for
-people who prefer clicking buttons over typing terminal commands — it wraps
+people who prefer clicking buttons over typing terminal commands, it wraps
 the exact same modules used by the command-line tool, so results are
 identical either way.
 
@@ -75,7 +75,7 @@ def render_output(title: str, text: str) -> None:
 
 def key_badge(label: str, has_key: bool) -> str:
     icon = "🟢" if has_key else "⚪"
-    status = "configured" if has_key else "not set — check will be skipped"
+    status = "configured" if has_key else "not set, check will be skipped"
     return f"{icon} **{label}** — {status}"
 
 
@@ -88,7 +88,7 @@ st.set_page_config(page_title="OSINT Recon", page_icon="🔍", layout="wide")
 st.title("🔍 OSINT Recon")
 st.caption(
     "A friendly interface for the OSINT Recon CLI. Runs locally on your "
-    "machine — nothing is sent anywhere except the requests each check "
+    "machine, nothing is sent anywhere except the requests each check "
     "already makes to its own public API."
 )
 
@@ -204,7 +204,7 @@ with tab_url:
 # --------------------------------------------------------------------------
 
 with tab_full:
-    st.subheader("Full scan — domain, subdomains, and every resolved IP")
+    st.subheader("Full scan: domain, subdomains, and every resolved IP")
     st.caption(
         "Runs every domain-level check on the base domain and any subdomains "
         "you list, then automatically resolves and scans every IP found."
@@ -257,6 +257,6 @@ with tab_full:
                         render_output("AbuseIPDB", run_captured(abuseipdb.run, ip))
                         render_output("Shodan", run_captured(shodan_lookup.run, ip))
             else:
-                st.info("No IPs were resolved — skipping IP-based checks.")
+                st.info("No IPs were resolved, skipping IP-based checks.")
 
             st.success("Full scan complete.")

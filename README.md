@@ -1,7 +1,7 @@
 # OSINT Recon CLI
 
 A modular, key-optional command-line tool for open-source intelligence (OSINT)
-reconnaissance on domains, IP addresses, and URLs — built for security
+reconnaissance on domains, IP addresses, and URLs, built for security
 analysts, IT professionals, and researchers who need a quick, scriptable way
 to pull together public intelligence from multiple sources in one place.
 
@@ -21,7 +21,7 @@ to pull together public intelligence from multiple sources in one place.
 | `recon ip <ip>` | Geolocation/ASN, AbuseIPDB report history, Shodan open ports |
 | `recon url <url>` | VirusTotal URL reputation |
 
-Every check that requires a third-party API key **works without one** — it
+Every check that requires a third-party API key **works without one** it
 simply prints a notice and skips that specific check instead of failing.
 This means the tool is useful the moment you clone it, and gets more
 powerful as you add free API keys over time.
@@ -82,7 +82,7 @@ recon domain example.com
 ### Full scan script
 
 For investigating a domain together with its subdomains and every resolved
-IP in a single run — instead of calling the CLI separately for each target
+IP in a single run, instead of calling the CLI separately for each target
 — use the bundled `full_scan.py` script:
 
 ```bash
@@ -94,7 +94,7 @@ python scripts/full_scan.py example.com --subdomains app,play
 ```
 
 This runs, for the base domain and each subdomain given: WHOIS/RDAP, DNS
-records, SSL certificate, and VirusTotal (domain + URL) — then automatically
+records, SSL certificate, and VirusTotal (domain + URL) then automatically
 resolves every IP found and runs geolocation, AbuseIPDB, and Shodan against
 each one. It's the same logic as running the CLI once per target and IP, just
 chained together with one command.
@@ -103,7 +103,7 @@ chained together with one command.
 
 Prefer clicking buttons over typing commands? A local browser-based
 interface is included, built with [Streamlit](https://streamlit.io). It
-wraps the exact same modules as the CLI, so results are identical — it just
+wraps the exact same modules as the CLI, so results are identical it just
 runs entirely on your own machine.
 
 ```bash
@@ -169,7 +169,7 @@ This project was deliberately built to be **safe to publish publicly**:
 - All secrets load from environment variables only.
 - Every domain/IP is validated before being used in a network request.
 - Private and reserved IP ranges are rejected before querying external APIs.
-- Every HTTP request has a fixed timeout — no hanging connections.
+- Every HTTP request has a fixed timeout, no hanging connections.
 - Every module fails gracefully with a clear message instead of crashing.
 - CI runs the test suite and a secret scanner (gitleaks) on every push.
 

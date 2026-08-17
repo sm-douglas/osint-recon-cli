@@ -1,5 +1,5 @@
 """
-Unit tests for input validation — the most security-relevant part of the
+Unit tests for input validation, the most security-relevant part of the
 codebase, since it gates every outbound request the tool makes.
 
 Run with: pytest tests/
